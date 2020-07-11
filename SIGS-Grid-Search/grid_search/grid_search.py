@@ -16,7 +16,10 @@ class GridSearch():
 			# -------- generate string of arguments -------- #
 			args_string = ''
 			for i,arg_name in enumerate(self.arg_names):
-				args_string += ' --{} {}'.format(arg_name, args[i])
+				if arg_name in ['env_id', 'model_name']:
+					args_string += ' {}'.format(args[i])
+				else:	
+					args_string += ' --{} {}'.format(arg_name, args[i])
 
 			cmd = 'python {}{}'.format(self.main_file, args_string)
 			print('cmd', cmd)
